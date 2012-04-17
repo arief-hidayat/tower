@@ -1,4 +1,3 @@
-
 describe 'Tower + Ember', ->
   #before ->
   #  global.window = global # tmp ember hack
