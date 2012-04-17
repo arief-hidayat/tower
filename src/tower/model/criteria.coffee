@@ -5,7 +5,7 @@ class Tower.Model.Criteria extends Tower.Class
 
   @include Tower.Support.Callbacks
 
-  constructor: (options = {}) ->
+  init: (options = {}) ->
     @model        = options.model
     @store        = if @model then @model.store() else undefined
 
@@ -429,7 +429,8 @@ class Tower.Model.Criteria extends Tower.Class
       
       ids = @ids
       # tmp
-      if @store.constructor.name == "Memory"
+      
+      if @store.constructor.className() == "Memory"
         ids = _.map ids, (id) -> id.toString()
       result.id = $in: ids
 

@@ -9,8 +9,8 @@ class Tower.Store.Memory extends Tower.Store
 
     callback()
 
-  constructor: (options) ->
-    super(options)
+  init: (options) ->  
+    @_super arguments...
     @initialize()
 
   initialize: ->

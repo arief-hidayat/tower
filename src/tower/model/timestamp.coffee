@@ -7,10 +7,10 @@ Tower.Model.Timestamp =
 
       @field "createdAt", type: "Date"
       @field "updatedAt", type: "Date"
-
+      
       @before "create", "setCreatedAt"
       @before "save", "setUpdatedAt"
-
+          
   CreatedAt:
     setCreatedAt: ->
       @set "createdAt", new Date

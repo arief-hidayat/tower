@@ -1,3 +1,4 @@
+
 describe 'Tower + Ember', ->
   #before ->
   #  global.window = global # tmp ember hack
@@ -71,8 +72,51 @@ describe 'Tower + Ember', ->
     class A extends Tower.Class
       @include viaInclude
       @reopen viaReopen
+      @reopenClass
+        reopenedClassMethod: "reopenedClassMethod!"
       
     a = new A
       
     assert.equal a.includedMethod, "includedMethod!"
     assert.equal a.reopenedMethod, "reopenedMethod!"
+    
+    class B extends A
+    
+    assert.equal B.reopenedClassMethod, A.reopenedClassMethod
+    
+  describe 'Tower.Model', ->
+    test 'new demo', ->
+      Base = Ember.Object.extend()
+      
+      class Model extends Base
+        init: ->
+          @INITTED = true
+          
+        get: (key) ->
+          @[key]
+          
+      class User extends Model
+        init: (attrs) ->
+          @[key] = value for key, value of attrs
+          @_super()
+
+      user = new User(firstName: "Lance")
+      assert.equal user.get('firstName'), "Lance"
+      assert.equal user.INITTED, true
+      
+    test 'App namespace', ->
+      assert.equal App.toString(), "App"
+      assert.isTrue App instanceof Ember.Namespace
+      
+    test 'Model namespace', ->
+      assert.equal App.Post.toString(), "App.Post"
+      assert.equal App.Post.className(), "Post"
+      
+    test 'new', ->
+      user = new App.User(lastName: "Pollard")
+      assert.equal user.get('lastName'), "Pollard"
+    
+    test 'metadata', ->
+      metadata = App.Post.metadata()
+      
+      #console.log metadata

@@ -3,15 +3,15 @@ require 'underscore.logger'
 global._ = require 'underscore'
 _.mixin(require('underscore.string'))
 
-module.exports  = global.Tower = Tower = {}
+require 'ember-metal'
+require 'ember-runtime'
+
+module.exports  = global.Tower = Tower = Ember.Namespace.create()
 
 # reads and sets the latest version on startup
 Tower.version = JSON.parse(require("fs").readFileSync(require("path").normalize("#{__dirname}/../../package.json"))).version
 
 Tower.logger    = _console
-
-require 'ember-metal'
-require 'ember-runtime'
 
 # external libraries, to get around having to use `require` in the browser.
 Tower.modules =

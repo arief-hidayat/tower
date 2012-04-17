@@ -208,7 +208,7 @@ class Tower.View.Table extends Tower.View.Component
     if typeof recordOrKey == "string"
       recordOrKey
     else
-      recordOrKey.constructor.name
+      recordOrKey.constructor.className()
 
   idFor: (type, key, value, row_index = @row_index, column_index = @column_index) ->
     [key, type, row_index, column_index].compact.map (node) ->

@@ -19,7 +19,7 @@ class Tower.Store.Ajax extends Tower.Store.Memory
 
   @toJSON: (record, method, format) ->
     data          = {}
-    data[Tower.Support.String.camelize(record.constructor.name, true)] = record
+    data[Tower.Support.String.camelize(record.constructor.className(), true)] = record
     data._method  = method
     data.format   = format
     JSON.stringify(data)

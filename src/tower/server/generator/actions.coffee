@@ -230,6 +230,7 @@ Tower.Generator.Actions =
     args: args, options: options, block: block
 
   findInSourcePaths: (path) ->
+    console.log @sourceRoot
     File.expandPath(File.join(@sourceRoot, "templates", @currentSourceDirectory, path))
     
 Tower.Generator.Actions.file = Tower.Generator.Actions.createFile

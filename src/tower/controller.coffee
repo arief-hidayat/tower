@@ -16,7 +16,7 @@ class Tower.Controller extends Tower.Class
   @instance: ->
     @_instance ||= new @
 
-  constructor: ->
+  init: ->
     @constructor._instance = @
     @headers              = {}
     @status               = 200
@@ -33,6 +33,8 @@ class Tower.Controller extends Tower.Class
 
     @formats              = _.keys(metadata.mimes)
     @hasParent            = @constructor.hasParent()
+    
+    @_super arguments...
 
 require './controller/callbacks'
 require './controller/helpers'

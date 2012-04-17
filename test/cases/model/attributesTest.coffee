@@ -1,7 +1,7 @@
 attr = Tower.Model.Attribute
 
 describeWith = (store) ->
-  describe "Tower.Model.Fields (Tower.Store.#{store.name})", ->
+  describe "Tower.Model.Fields (Tower.Store.#{store.className()})", ->
     describe 'class', ->
       test 'type: "Id"', ->
         field = App.BaseModel.fields().id

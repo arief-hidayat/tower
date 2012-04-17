@@ -5,7 +5,6 @@ _.extend Tower,
   root:       "/"
   publicPath: "/"
   case:       "camelcase"
-  namespace:  null
   accessors:  typeof(window) == "undefined"
   logger:     if typeof(_console) != 'undefined' then _console else console
   structure:  "standard"
@@ -71,7 +70,7 @@ _.extend Tower,
         Tower.Support.String.camelcase(string)
 
   namespace:  ->
-    Tower.Application.instance().constructor.name
+    Tower.Application.instance().constructor.className()
 
   module: (namespace) ->
     node    = Tower.namespaces[namespace]

@@ -9,6 +9,7 @@ global.test   = it
 global.sinon  = require 'sinon'
 global.async  = require 'async'
 global.cb     = true # some library has a global leak...
+global.App    = null
 
 Tower.root            = process.cwd() + "/test/example"
 Tower.publicPath      = Tower.root + "/public"
@@ -70,9 +71,10 @@ Tower.Controller::redirectToOld = (options = {}) ->
     Tower.get options.path, params, callback
 
 app = Tower.Application.instance()
-
+    
 before (done) ->
-  app.initialize done
+  process.nextTick =>
+    app.initialize done
   # App.Address.store().collection().ensureIndex {coordinates:"2d"}, done
 
 beforeEach (done) ->
